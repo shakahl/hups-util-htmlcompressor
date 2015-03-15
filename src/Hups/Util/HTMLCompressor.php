@@ -52,7 +52,27 @@ class HTMLCompressor
      */
     public function removeWhitespaces()
     {
-        $this->filteredHtml = preg_replace("/(?<=>)\s+|\s+(?=<)/usi", '', $this->filteredHtml);
+        $txt = $this->filteredHtml;
+
+        // exclude pre or code tags
+        preg_match_all('!(<(?:code|pre|textarea).*>[^<]+</(?:code|pre|textarea)>)!umi', $txt, $pre);
+        
+        // removing all pre or code tags
+        $txt = preg_replace('!<(?:code|pre|textarea).*>[^<]+</(?:code|pre|textarea)>!umi', '#pre#', $txt);
+
+        $txt = preg_replace("/(?<=>)\s+|\s+(?=<)/umi", '', $txt);
+
+        if(!empty($pre[0]))
+        {
+            foreach($pre[0] as $tag)
+            {
+                // putting back pre|code tags
+                $txt = preg_replace('!#pre#!', trim($tag), $txt, 1);
+            }
+        }
+
+        $this->filteredHtml = $txt;
+
         return $this;
     }
 

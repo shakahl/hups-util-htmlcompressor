@@ -23,7 +23,7 @@ class HTMLCompressorTest extends PHPUnit_Framework_TestCase
 
 		$result = $c->get();
 
-		$this->assertEquals($result, '<!DOCTYPE html><html><head><meta charset=utf-8 /><title></title></head><body>test</body></html>');		
+		$this->assertEquals($result, '<!DOCTYPE html><html><head><meta charset=utf-8 /><title></title></head><body>test<pre> </pre></body></html>');		
 	}
 
 	public function testCanRemoveComments()
