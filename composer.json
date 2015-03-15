@@ -6,10 +6,9 @@
     "description": "HTML output compressor and minimizer written in PHP.",
     "keywords": [
         "php",
-        "file",
-        "download",
-        "resume",
-        "large"
+        "html",
+        "compress",
+        "hups"
     ],
     "repositories": [
         {
